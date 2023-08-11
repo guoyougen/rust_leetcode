@@ -1,0 +1,22 @@
+Leetcode 287. 寻找重复数.
+```rust
+impl Solution {
+    pub fn find_duplicate( mut nums: Vec<i32>) -> i32 {
+    nums.sort();//排序
+    let mut prev_num = -1;//表示前一个数
+    *nums.iter().find(|&&num| { let found = num == prev_num; prev_num = num; found }).unwrap()//
+    }
+}
+```
+
+```rust
+impl Solution {
+    pub fn find_duplicate(nums: Vec<i32>) -> i32 {
+        let mut count = vec![0; nums.len()];
+        *nums.iter().find(|&&num| {
+            count[num as usize] += 1;
+            count[num as usize] > 1
+        }).unwrap()
+    }
+}
+```
